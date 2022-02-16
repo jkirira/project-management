@@ -1,0 +1,17 @@
+
+@import "tailwindcss/base";
+
+@import "tailwindcss/components";
+
+@import "tailwindcss/utilities";
+
+$cytonn-green-dark: #056b5b;
+$cytonn-green-light: #9dd85c;
+
+.navbar{
+    background: $cytonn-green-dark;
+}
+.navbar a{
+    color: $cytonn-green-light;
+}
+
