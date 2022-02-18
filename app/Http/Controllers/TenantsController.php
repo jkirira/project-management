@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+
+new App\Jobs\SendEmail;
+
 use App\Http\Requests\TenantRequest;
 use App\Http\Requests\UpdateTenantRequest;
 use App\Interfaces\TenantInterface;
+use App\Jobs\SendEmail;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -48,6 +52,8 @@ class TenantsController extends Controller
     public function store(TenantRequest $tenantRequest)
     {
         $tenant = $this->tenantRepo->addTenant($tenantRequest);
+
+        dispatch(new SendEmail($tenant));
 
         return response()->json(['message' => 'User added successfully'], 200);
     }
@@ -103,5 +109,11 @@ class TenantsController extends Controller
         return response()->json(['message' => "success"], 200);
 
 
+    }
+
+    public function sendEmail(User $user)
+    {
+        dispatch(new SendEmail($user));
+        dd('done');
     }
 }

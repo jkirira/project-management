@@ -16,11 +16,11 @@ class CreateIssuesTable extends Migration
         Schema::create('issues', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('tenant_id');
-            $table->unsignedInteger('manager_id');
+            $table->unsignedInteger('manager_id')->nullable()->default(null);
             $table->text('title');
             $table->longText('body');
             $table->string('status')->default('unanswered');
-            $table->unsignedTinyInteger('rating');
+            $table->unsignedTinyInteger('rating_id')->nullable()->default(null);
             $table->timestamps();
         });
     }

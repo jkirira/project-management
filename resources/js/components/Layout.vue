@@ -8,7 +8,7 @@
 
             <div class="w-10/12">
 
-                    <router-view></router-view>
+                <router-view></router-view>
 
             </div>
 
@@ -46,7 +46,11 @@ export default {
         ]),
         sidebarRoutes(){
             if ( this.userDetails.role_id == 1 ) {
-                return [{'name':'My Issues', 'to' : 'home'},{'name':'Add Issues', 'to' : ''},{'name':'My Issues', 'to' : ''}, ]
+                return [
+                    {'name':'My Issues', 'to' : 'home'},
+                    {'name':'Add Issues', 'to' : 'add_issue'},
+                    {'name':'My Issues', 'to' : ''},
+                ]
             } else if ( this.userDetails.role_id > 1 ){
                 return [
                     {'name':'My Issues', 'to' : 'admin_home'},
@@ -60,10 +64,7 @@ export default {
             }
         }
     },
-    methods: {
-        redirectToActors(){
-        }
-    }
+    methods: {}
 }
 </script>
 

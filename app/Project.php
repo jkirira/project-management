@@ -12,4 +12,14 @@ class Project extends Model
     {
         $this->hasMany(Unit::class);
     }
+
+    public function manager_details()
+    {
+        $this->hasOne(ManagerDetails::class, 'project_id');
+    }
+
+    public function manager()
+    {
+        $this->manager_details->user;
+    }
 }

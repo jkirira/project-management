@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class TenantRequest extends FormRequest
+class IssueRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,14 +25,10 @@ class TenantRequest extends FormRequest
     public function rules()
     {
         return [
-            'first_name' => 'required|alpha',
-            'last_name' => 'required|alpha',
-            'national_id' => 'required|numeric',
-            'phone' => 'nullable|numeric',
-            'email' => 'required|email|unique:users,email,{$this->user->id}',
-            'role_id' => 'integer|size:1',
-            'unit_id' => 'required|exists:units,id',
-            'occupation' => 'nullable|alpha'
+            'title' => 'alpha',
+            'body' => 'alpha',
+            'status' => Rule::in(['unanswered', 'unresolved', 'resolved']),
+            'rating' => 'integer|min:0|max:5',
         ];
     }
 }

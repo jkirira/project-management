@@ -5,10 +5,9 @@ namespace App\Repositories;
 use App\Http\Requests\TenantRequest;
 use App\Http\Requests\UpdateTenantRequest;
 use App\Interfaces\TenantInterface;
-use App\Mail\NewTenant;
+
 use App\User;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Mail;
 
 class TenantRepository implements TenantInterface
 {
@@ -34,8 +33,6 @@ class TenantRepository implements TenantInterface
             'unit_id' => $request->unit_id,
             'occupation' => $request->occupation ?: '',
         ]);
-
-//        Mail::to($user)->send(new NewTenant($user));
 
         return $user;
     }

@@ -26,9 +26,10 @@ class IssueRepository implements IssueInterface
 
     public function addIssue(IssueRequest $request)
     {
-        $validated = $request->validated();
-
-        Issue::create($validated);
+        $tenant = auth()->user();
+        $request->tenant_id = $tenant->id;
+        $request->manager_id = $tenant->unit->project->manager->id;
+        Issue::create($request);
     }
 
     public function updateIssue(Issue $issue, IssueRequest $request)

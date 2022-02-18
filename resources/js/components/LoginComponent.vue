@@ -2,7 +2,7 @@
 
     <section id="top" class="text-gray-800 body-font relative px-4 lg:p-0">
         <div class="container px-5 py-24 md:mx-auto my-6 rounded-lg border-2 border-gray-200">
-            <div class="flex items-center justify-center lg:w-1/2 md:w-2/3 mx-auto rounded-md mb-12 border-2 border-red-500" v-show="error">
+            <div class="flex items-center justify-center w-3/4 mx-auto rounded-md mb-12 border-2 border-red-500" v-show="error">
                 <h1 class="sm:text-2xl text-xl font-medium title-font text-red-500">{{error}}</h1>
             </div>
             <div class="flex flex-col text-center w-full mb-12">
@@ -93,7 +93,7 @@ export default{
                     return
                 }) .catch((err) => {
                     this.error = err.response.data['message']
-                    window.location = 'top';
+                    window.location = '#top';
                     return
                 })
         }

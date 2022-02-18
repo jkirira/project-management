@@ -8,7 +8,7 @@
         <p>Your account has been created.</p>
         <p>Login Details</p>
         <p style="display: flex; margin-left: 10px;">Email: <span style=" font-weight: 900;"> {{ $user->email }}</span></p>
-        <p style="display: flex; margin-left: 10px;">Password: <span style=" font-weight: 900;">password</span></p>
+        <p style="display: flex; margin-left: 10px;">Password: <span style=" font-weight: 900;">{{ $user->national_id }}</span></p>
         <p>Please make sure to change this password as soon as possible this is not safe.</p>
         <p>Login <a href="http://projectmanagement.com/login">Here</a></p>
         <p>Thank you.</p>

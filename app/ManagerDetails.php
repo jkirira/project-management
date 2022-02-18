@@ -8,7 +8,7 @@ class ManagerDetails extends Model
 {
     protected $guarded = [];
 
-    public function manager()
+    public function user()
     {
         $this->belongsTo(User::class, 'user_id');
     }

@@ -6,6 +6,7 @@ import AddTenant from "../components/manager/AddTenant.vue";
 import Units from "../components/manager/Units.vue";
 import UnitDetails from "../components/manager/UnitDetails.vue";
 import HomeComponent from "../components/Home.vue";
+import AddIssue from "../components/tenant/AddIssue.vue";
 
 Vue.use(VueRouter);
 
@@ -75,6 +76,15 @@ const routes = [
                 beforeEnter: (to, from, next) => {
                     console.log(store.getters.userDetails.role_id < 2 || !store.getters.isLoggedIn)
                     if ( store.getters.userDetails.role_id < 2 || !store.getters.isLoggedIn ) next( false )
+                    else next()
+                },
+            },
+            {
+                path: 'add-issue',
+                component: AddIssue,
+                name: 'add_issue',
+                beforeEnter: (to, from, next) => {
+                    if ( store.getters.userDetails.role_id > 1 || !store.getters.isLoggedIn ) next( false )
                     else next()
                 },
             },

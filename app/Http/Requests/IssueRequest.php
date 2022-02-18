@@ -25,12 +25,8 @@ class IssueRequest extends FormRequest
     public function rules()
     {
         return [
-            'tenant_id' => 'required|exists:users,id',
-            'manager_id' => 'required|exists:users,id',
             'title' => 'required',
             'body' => 'required',
-            'status' => ['required', Rule::in(['unanswered', 'unresolved', 'resolved']), ],
-            'rating' => 'integer|min:0|max:5',
         ];
     }
 }
