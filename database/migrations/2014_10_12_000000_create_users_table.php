@@ -17,7 +17,8 @@ class CreateUsersTable extends Migration
             $table->bigIncrements('id');
             $table->string('first_name');
             $table->string('last_name');
-            $table->unsignedBigInteger('phone')->default(0);
+            $table->unsignedBigInteger('national_id');
+            $table->unsignedBigInteger('phone')->default(0)->nullable();
             $table->string('email')->unique();
             $table->string('password');
             $table->unsignedInteger('role_id')->default(1);

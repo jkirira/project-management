@@ -49,7 +49,7 @@ class TenantsController extends Controller
     {
         $tenant = $this->tenantRepo->addTenant($tenantRequest);
 
-        return response()->json($tenant, 200);
+        return response()->json(['message' => 'User added successfully'], 200);
     }
 
     /**
@@ -62,7 +62,7 @@ class TenantsController extends Controller
     {
         $tenant = $this->tenantRepo->getTenantById($id);
 
-        return response()->json($tenant, 200);
+        return response()->json(['tenant' => $tenant], 200);
     }
 
     /**

@@ -28,6 +28,7 @@ class UpdateTenantRequest extends FormRequest
             'first_name' => 'alpha',
             'last_name' => 'alpha',
             'number' => 'nullable|numeric',
+            'national_id' => 'nullable|numeric',
             'email' => 'unique:users,email,{$this->user->id}',
             'password' => 'min:8',
             'role_id' => 'integer|size:1',

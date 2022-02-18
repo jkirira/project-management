@@ -20,10 +20,13 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('register', [PassportAuthController::class, 'register']);
 Route::post('login', [PassportAuthController::class, 'login']);
-Route::get('/issues', 'IssuesController@index');
-Route::get('/issues/{id}', 'IssuesController@show');
+//Route::post('logout/{user}', [PassportAuthController::class, 'logout']);
+
 
 Route::middleware('auth:api')->group(function () {
+    Route::get('/issues', 'IssuesController@index');
+    Route::get('/issues/{id}', 'IssuesController@show');
+    Route::get('/issues/by/{user}', 'IssuesController@index');
     Route::get('/issues/create', 'IssuesController@create');
     Route::post('/issues', 'IssuesController@store');
     Route::delete('/issues/{issue}', 'IssuesController@destroy');

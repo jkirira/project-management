@@ -11,19 +11,25 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/{any}', function () {
+    return view('app');
+})->where('any', '.*');
 
 
-Route::get('/profiles/{user}', 'ProfilesController@show')->name('profile');
-
-Route::get('/units', 'UnitsController@index');
-Route::get('/units/{id}', 'UnitsController@show');
-
-//Route::get('/tds', 'TenantDetailsController@index');
-
+//
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+//
+//Auth::routes();
+//
+//Route::get('/home', 'HomeController@index')->name('home');
+//
+//
+//Route::get('/profiles/{user}', 'ProfilesController@show')->name('profile');
+//
+//Route::get('/units', 'UnitsController@index');
+//Route::get('/units/{id}', 'UnitsController@show');
+//
+////Route::get('/tds', 'TenantDetailsController@index');
+//

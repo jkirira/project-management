@@ -1,15 +1,15 @@
 <template>
-    <div id="my-modal" class="modal" v-show="show">
+    <div id="my-modal" class="modal" v-show="show" @click="outside_click">
 
         <div class="modal-content">
             <div class="modal-header flex items-center justify-between">
-                <h2 class="mx-4">' {{show.name}} ' movie Trailer</h2>
-                <span class="close" @click="closeModal">&times;</span>
+                <span class="close" @click="$emit('closeModal')">&times;</span>
             </div>
-            <div class="modal-body">
-
-                {{ body }}
-
+            <div class="modal-body">{{ this.message }}</div>
+            <div class="modal-footer">
+                <button @click="$emit('closeModal')" class="flex mx-auto text-white bg-green-500 border-0 py-2 px-8 focus:outline-none hover:bg-green-600 rounded text-lg">
+                    OK
+                </button>
             </div>
         </div>
     </div>
@@ -17,43 +17,28 @@
 
 <script>
 export default {
-    props: ['message'],
+    name: "FlashComponent",
+    props: ['message', 'show_modal'],
     data(){
         return {
-            body: '',
-            show: true
+             show: false
         }
     },
-    created(){
-        if(this.message) {
-            this.openModal(this.message)
+    watch: {
+        show_modal: function () {
+            this.show = this.show_modal;
         }
-
-        window.addEventListener('flash', (message) => {
-             this.openModal(message);
-        });
-
-
-        window.addEventListener('click', (e) => {
-            const modal = document.querySelector('#my-modal');
-            if (e.target == modal) {
-                this.show = false;
-            }
-        });
-
     },
     methods:{
-
-        openModal(message) {
-            this.body = message;
-            this.show = true;
-        },
-
-        closeModal() {
-            this.show = false;
-        },
+        outside_click(e) {
+            let outsideModal = document.getElementById('my-modal')
+            if (e.target == outsideModal){
+                this.$emit('closeModal')
+            }
+        }
 
     }
+
 }
 
 </script>
@@ -75,11 +60,12 @@ export default {
 }
 
 .modal-content {
+    position: relative;
     margin: auto;
-    width: 60%;
+    min-width: 25%;
     box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
     background: #fff;
-    min-height: 500px;
+    min-height: 300px;
 }
 
 .modal-header h2,
@@ -88,6 +74,9 @@ export default {
 }
 
 .modal-header {
+    position: absolute;
+    right: 0;
+    top: 0;
     padding: 15px;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
@@ -101,14 +90,14 @@ export default {
     justify-content: center;
 }
 
-.modal-footer {
-    background: #cccccc;
-    padding: 10px;
-    color: #fff;
-    text-align: center;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-}
+/*.modal-footer {*/
+/*    background: #cccccc;*/
+/*    padding: 10px;*/
+/*    color: #fff;*/
+/*    text-align: center;*/
+/*    border-bottom-left-radius: 5px;*/
+/*    border-bottom-right-radius: 5px;*/
+/*}*/
 
 .close {
     /*color: #ccc;*/

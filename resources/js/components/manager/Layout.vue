@@ -8,10 +8,10 @@
                 </div>
                 <div class="flex flex-col flex-grow p-4 overflow-auto">
                     <a class="flex items-center flex-shrink-0 h-10 px-2 text-sm font-medium rounded hover:bg-gray-300" href="#">
-                        <router-link :to="{ name: 'admin_home' }"><span class="leading-none">View Movies</span></router-link>
+                        <router-link :to="{ name: 'admin_home' }"><span class="leading-none">Issues</span></router-link>
                     </a>
                     <a class="flex items-center flex-shrink-0 h-10 px-2 text-sm font-medium rounded hover:bg-gray-300" href="#">
-                        <router-link :to="{ name: 'add_movie' }"><span class="leading-none">Add Movie</span></router-link>
+                        <router-link :to="{ name: 'add_movie' }"><span class="leading-none">Units</span></router-link>
                     </a>
                 </div>
 

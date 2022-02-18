@@ -5,7 +5,10 @@ namespace App\Repositories;
 use App\Http\Requests\TenantRequest;
 use App\Http\Requests\UpdateTenantRequest;
 use App\Interfaces\TenantInterface;
+use App\Mail\NewTenant;
 use App\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class TenantRepository implements TenantInterface
 {
@@ -23,12 +26,16 @@ class TenantRepository implements TenantInterface
 
     public function addTenant(TenantRequest $request)
     {
+        $request['password'] = Hash::make($request->national_id);
+
         $user = User::create($request->except(['role_id', 'unit_id', 'occupation']));
         $user->tenantDetails()->create([
             'user_id' => $user->id,
             'unit_id' => $request->unit_id,
             'occupation' => $request->occupation ?: '',
         ]);
+
+//        Mail::to($user)->send(new NewTenant($user));
 
         return $user;
     }

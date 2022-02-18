@@ -1,17 +1,17 @@
 <template>
     <div>
-        <div class="flex flex-col lg:flex-row w-screen h-screen text-gray-700 relative">
+        <div class="flex flex-col lg:flex-row w-screen h-full text-gray-700 relative">
 
             <!-- Component Start -->
 
-            <sidebar-component :sidebar_routes="sidebarRoutes"></sidebar-component>
+            <sidebar-component class="w-2/12" :sidebar_routes="sidebarRoutes"></sidebar-component>
 
-                <div class="flex-grow p-6 mt-8 overflow-auto w-full">
+            <div class="w-10/12">
 
                     <router-view></router-view>
 
-                </div>
             </div>
+
             <!-- Component End  -->
 
         </div>
@@ -19,8 +19,7 @@
 </template>
 
 <script>
-import MovieCard from '../MovieCard.vue'
-import SidebarComponent from "../Sidebar";
+import SidebarComponent from "./Sidebar";
 import {mapActions, mapGetters} from "vuex";
 export default {
     components: {SidebarComponent},
@@ -47,9 +46,15 @@ export default {
         ]),
         sidebarRoutes(){
             if ( this.userDetails.role_id == 1 ) {
-                return [{'name':'My Issues', 'to' : ''},{'name':'Add Issues', 'to' : ''},{'name':'My Issues', 'to' : ''}, ]
+                return [{'name':'My Issues', 'to' : 'home'},{'name':'Add Issues', 'to' : ''},{'name':'My Issues', 'to' : ''}, ]
             } else if ( this.userDetails.role_id > 1 ){
-                return [{'name':'My Issues', 'to' : ''},{'name':'View Issues', 'to' : ''},{'name':'My Issues', 'to' : ''}, ]
+                return [
+                    {'name':'My Issues', 'to' : 'admin_home'},
+                    {'name':'Active Issues', 'to' : ''},
+                    {'name':'Resolved Issues', 'to' : ''},
+                    {'name':'View Units', 'to' : 'units'},
+                    {'name':'Add Tenant', 'to' : 'add_tenant'},
+                ]
             } else {
                return []
             }
@@ -69,6 +74,7 @@ export default {
     z-index: 9999;
     background: #ffffff;
     border: 1px solid lightgrey;
+
 }
 @media screen and (min-width: 1024px){
     .sidebar{
