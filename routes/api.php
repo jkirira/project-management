@@ -50,6 +50,7 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/managers/{user}', 'ManagersController@show');
     Route::delete('/managers/{user}', 'ManagersController@destroy');
 
+
     Route::post('logout', [PassportAuthController::class, 'logout']);
 
 

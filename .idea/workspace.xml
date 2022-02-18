@@ -2,24 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a2194983-0307-4fd3-9bd5-5598b3c34f59" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Requests/UpdateIssueRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TenantsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TenantsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UsersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UsersController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/IssueRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/IssueRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/TenantRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/TenantRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Mail/NewTenant.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Mail/NewTenantMail.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/ManagerDetails.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/ManagerDetails.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Project.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Project.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Repositories/IssueRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/IssueRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Repositories/TenantRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/TenantRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2022_02_15_065341_create_issues_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2022_02_15_065341_create_issues_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/Layout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Layout.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/LoginComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/LoginComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/tenant/AddIssue.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/tenant/AddIssue.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/routes/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/emails/newTenant.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/emails/newTenant.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -183,7 +167,7 @@
       <option name="presentableId" value="Default" />
       <updated>1644867195471</updated>
       <workItem from="1644867196956" duration="2216000" />
-      <workItem from="1644905762720" duration="140745000" />
+      <workItem from="1644905762720" duration="141494000" />
     </task>
     <servers />
   </component>
