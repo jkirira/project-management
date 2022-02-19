@@ -56,9 +56,26 @@ class Issue extends Model
         return $this->hasOne(Rating::class);
     }
 
+    public function resolve()
+    {
+        $this->update(['status' => 'resolved']);
+    }
+
+    public function unresolve()
+    {
+        $this->update(['status' => 'unresolved']);
+    }
+
     public function addReply($reply)
     {
-        $this->replies()->create($reply);
+        if($this->replies()->count() < 1){
+            if(auth()->user()->role_id > 1){
+                $this->unresolve();
+            }
+        }
+
+        $new_reply = $this->replies()->create($reply);
+        return $new_reply;
     }
 
     public function addRating($reply)

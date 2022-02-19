@@ -7,11 +7,16 @@ import Units from "../components/manager/Units.vue";
 import UnitDetails from "../components/manager/UnitDetails.vue";
 import HomeComponent from "../components/Home.vue";
 import AddIssue from "../components/tenant/AddIssue.vue";
+import Issue from "../components/tenant/Issue.vue";
+import Profile from "../components/Profile.vue"
+import Projects from "../components/supervisor/Projects.vue"
 
 Vue.use(VueRouter);
 
 import store from "../store";
 import AdminHome from "../components/manager/AdminHome";
+import ViewProfile from "../components/ViewProfile.vue";
+import EditProfile from "../components/EditProfile.vue";
 
 const routes = [
     {
@@ -29,7 +34,7 @@ const routes = [
         component: LayoutComponent,
         beforeEnter: (to, from, next) => {
             console.log(store.getters.isLoggedIn)
-            if ( !store.getters.isLoggedIn ) next( {name: 'login'} )
+            if (!store.getters.isLoggedIn) next({name: 'login'})
             else next()
         },
         children: [
@@ -38,44 +43,7 @@ const routes = [
                 component: HomeComponent,
                 name: 'home',
                 beforeEnter: (to, from, next) => {
-                    if ( store.getters.userDetails.role_id > 1 ) next( {name: 'admin_home'} )
-                    else next()
-                },
-            },
-            {
-                path: 'management/home',
-                component: AdminHome,
-                name: 'admin_home',
-                beforeEnter: (to, from, next) => {
-                    if ( store.getters.userDetails.role_id < 2 ) next( false )
-                    else next()
-                },
-            },
-            {
-                path: 'units',
-                component: Units,
-                name: 'units',
-                beforeEnter: (to, from, next) => {
-                    if ( store.getters.userDetails.role_id < 2 ) next( false )
-                    else next()
-                },
-            },
-            {
-                path: 'units/details',
-                component: UnitDetails,
-                name: 'unit_details',
-                beforeEnter: (to, from, next) => {
-                    if ( store.getters.userDetails.role_id < 2 ) next( false )
-                    else next()
-                },
-            },
-            {
-                path: 'add-tenant',
-                component: AddTenant,
-                name: 'add_tenant',
-                beforeEnter: (to, from, next) => {
-                    console.log(store.getters.userDetails.role_id < 2 || !store.getters.isLoggedIn)
-                    if ( store.getters.userDetails.role_id < 2 || !store.getters.isLoggedIn ) next( false )
+                    if (store.getters.userDetails.role_id > 1) next({name: 'admin_home'})
                     else next()
                 },
             },
@@ -84,9 +52,78 @@ const routes = [
                 component: AddIssue,
                 name: 'add_issue',
                 beforeEnter: (to, from, next) => {
-                    if ( store.getters.userDetails.role_id > 1 || !store.getters.isLoggedIn ) next( false )
+                    if (store.getters.userDetails.role_id > 1 || !store.getters.isLoggedIn) next(false)
                     else next()
                 },
+            },
+            {
+                path: 'issue/:id',
+                component: Issue,
+                name: 'issue_details',
+                beforeEnter: (to, from, next) => {
+                    if (!store.getters.isLoggedIn) next(false)
+                    else next()
+                },
+            },
+            // {
+            //     path: 'profile',
+            //     component: Profile,
+            //     children: [
+            //         {
+            //             path: '/:id',
+            //             component: ViewProfile,
+            //             name: 'view_profile',
+            //             beforeEnter: (to, from, next) => {
+            //                 if (!store.getters.isLoggedIn) next(false)
+            //                 else next()
+            //             },
+            //         },
+            //         {
+            //             path: '/:id/edit',
+            //             component: EditProfile,
+            //             name: 'edit_profile',
+            //             beforeEnter: (to, from, next) => {
+            //                 if ( !store.getters.isLoggedIn ) next( false )
+            //                 else next()
+            //             },
+            //         }
+            //     ]
+            // },
+
+        ]
+    },
+    {
+        path: '/management',
+        component: LayoutComponent,
+        beforeEnter: (to, from, next) => {
+            if ( store.getters.userDetails.role_id < 2 ) next( false )
+            else next()
+        },
+        children: [
+            {
+                path: '/',
+                component: AdminHome,
+                name: 'admin_home',
+            },
+            {
+                path: '/projects',
+                component: Projects,
+                name: 'projects'
+            },
+            {
+                path: '/units',
+                component: Units,
+                name: 'units',
+            },
+            {
+                path: '/units/:id',
+                component: UnitDetails,
+                name: 'unit_details',
+            },
+            {
+                path: '/add-tenant',
+                component: AddTenant,
+                name: 'add_tenant',
             },
         ]
     },

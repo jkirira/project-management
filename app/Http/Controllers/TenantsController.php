@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 
-new App\Jobs\SendEmail;
-
 use App\Http\Requests\TenantRequest;
 use App\Http\Requests\UpdateTenantRequest;
 use App\Interfaces\TenantInterface;

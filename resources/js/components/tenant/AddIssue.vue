@@ -43,8 +43,9 @@ export default {
         return {
             form:{
                 title:'',
-                body: ''
-            }
+                body: '',
+            },
+            error: ''
         }
     },
     methods:{
@@ -67,7 +68,14 @@ export default {
                 return
             }
 
-            axios.post(base_url + '/api/issues', this.form )
+            axios({
+                method: 'post',
+                url: base_url + '/api/issues',
+                data: this.form,
+                headers: {
+                    Authorization: 'Bearer ' + window.localStorage.getItem('token')
+                }
+            })
                 .then((response) => {
                     console.log(response.data)
                     this.$swal('Success', response.data['message']);

@@ -20,7 +20,6 @@ class ManagerRepository implements ManagerInterface
         return User::find($id);
     }
 
-
     public function addManager(ManagerRequest $request)
     {
         $user = User::create($request->except(['project_id', 'supervisor_id', 'user_id', 'role_id']));

@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class TenantRequest extends FormRequest
+class RatingRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,14 +25,8 @@ class TenantRequest extends FormRequest
     public function rules()
     {
         return [
-            'first_name' => 'required|alpha',
-            'last_name' => 'required|alpha',
-            'national_id' => 'required|numeric',
-            'phone' => 'nullable|numeric',
-            'email' => 'required|email|unique:users,email',
-            'role_id' => 'integer|size:1',
-            'unit_id' => 'required|exists:units,id|unique:tenant_details,unit_id',
-            'occupation' => 'nullable|alpha'
+            'comment' => 'nullable|string',
+            'value' => 'required|numeric',
         ];
     }
 }

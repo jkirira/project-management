@@ -70,7 +70,7 @@ class IssuesController extends Controller
 //        ]);
 
         $issue = $this->issueRepo->addIssue($request);
-        return response()->json($issue, 200);
+        return response()->json(['message' => 'Issue Successfully created!'], 200);
     }
 
     /**
@@ -94,8 +94,14 @@ class IssuesController extends Controller
      * @param  \App\Issue  $issue
      * @return \Illuminate\Http\Response
      */
-    public function edit()
+    public function edit(Issue $issue, Request $request)
     {
+        if($request->resolve){
+            $issue->resolve();
+            return response(['message' => 'Issue Resolved'], 200);
+        }
+        $issue->unresolve();
+        return response(['message' => 'Issue marked as Unresolved'], 200);
 
     }
 

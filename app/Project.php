@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Project extends Model
 {
@@ -10,16 +11,19 @@ class Project extends Model
 
     public function units()
     {
-        $this->hasMany(Unit::class);
+        return $this->hasMany(Unit::class);
     }
 
     public function manager_details()
     {
-        $this->hasOne(ManagerDetails::class, 'project_id');
+        return $this->hasOne(ManagerDetails::class, 'project_id') ?: null;
     }
 
     public function manager()
     {
-        $this->manager_details->user;
+        if ($this->manager_details == null) {
+            return new BelongsTo($this->newQuery(), $this, '', '', '');
+        }
+        return $this->manager_details->user;
     }
 }

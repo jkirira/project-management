@@ -2,19 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\UnitRequest;
-use App\Interfaces\UnitInterface;
-use App\Unit;
+use App\Interfaces\ProjectInterface;
+use App\Project;
 use Illuminate\Http\Request;
 
-class UnitsController extends Controller
+class ProjectsController extends Controller
 {
 
-    protected $unitRepo;
+    protected $projectRepo;
 
-    public function __construct(UnitInterface $unitRepo)
+    public function __construct(ProjectInterface $projectRepo)
     {
-        $this->unitRepo = $unitRepo;
+        $this->projectRepo = $projectRepo;
     }
     /**
      * Display a listing of the resource.
@@ -23,9 +22,9 @@ class UnitsController extends Controller
      */
     public function index()
     {
-        $units = $this->unitRepo->getAllUnits();
+        $projects = $this->projectRepo->getAllProjects();
 
-        return response()->json($units, 200);
+        return response()->json($projects, 200);
     }
 
     /**
@@ -44,11 +43,9 @@ class UnitsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UnitRequest $unitRequest)
+    public function store( )
     {
-        $unit = $this->unitRepo->addUnit($unitRequest);
 
-        return response()->json($unit, 200);
     }
 
     /**
@@ -59,9 +56,9 @@ class UnitsController extends Controller
      */
     public function show($id)
     {
-        $unit = $this->unitRepo->getUnitById($id);
+        $project = $this->projectRepo->getProjectById($id);
 
-        return response()->json($unit, 200);
+        return response()->json($project, 200);
     }
 
     /**
@@ -82,11 +79,9 @@ class UnitsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Unit $unit, UnitRequest $unitRequest)
+    public function update( )
     {
-        $unit = $this->unitRepo->updateUnit($unit, $unitRequest);
 
-        return response()->json($unit, 200);
     }
 
     /**
@@ -95,11 +90,8 @@ class UnitsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Unit $unit)
+    public function destroy( )
     {
-        $this->unitRepo->deleteUnit($unit);
-
-        return response()->json(['message' => "success"], 200);
 
     }
 }

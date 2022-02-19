@@ -9,10 +9,6 @@ use Illuminate\Http\Request;
 class RepliesController extends Controller
 {
 
-    public function __construct(){
-        $this->middleware('auth');
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -45,13 +41,12 @@ class RepliesController extends Controller
             'body' => 'required'
         ]);
 
-        $issue->addReply([
+        $new_reply = $issue->addReply([
             'body' => request('body'),
             'user_id' => auth()->id(),
         ]);
 
-        return back()
-            ->with('flash', 'Your reply has been left');
+        return response()->json(["message" => "Replied", "reply" => $new_reply], 200);
     }
 
     /**

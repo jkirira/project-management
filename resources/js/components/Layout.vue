@@ -56,7 +56,7 @@ export default {
                     {'name':'My Issues', 'to' : 'admin_home'},
                     {'name':'Active Issues', 'to' : ''},
                     {'name':'Resolved Issues', 'to' : ''},
-                    {'name':'View Units', 'to' : 'units'},
+                    {'name':'View Projects', 'to' : 'units'},
                     {'name':'Add Tenant', 'to' : 'add_tenant'},
                 ]
             } else {

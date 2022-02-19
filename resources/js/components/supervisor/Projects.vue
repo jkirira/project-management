@@ -100,19 +100,19 @@ export default{
     name: "Units",
     data(){
         return {
-
+            projects: ''
         }
     },
     mounted(){
         axios({
             method: 'get',
-            url: base_url + '/managers/' + window.localStorage.getItem('user') + '/project',
+            url: base_url + '/projects',
             headers: {
                 Authorization: 'Bearer ' + window.localStorage.getItem('token')
             }
         }).then((response) =>{
             console.log(response.data)
-            this.user_issues = response.data
+            this.projects = response.data
         }) .catch((err) => {
             console.log(err)
         })

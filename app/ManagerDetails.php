@@ -8,9 +8,11 @@ class ManagerDetails extends Model
 {
     protected $guarded = [];
 
+    protected $with = ['project', 'supervisor'];
+
     public function user()
     {
-        $this->belongsTo(User::class, 'user_id');
+        $this->belongsTo(User::class);
     }
 
     public function project()

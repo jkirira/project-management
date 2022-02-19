@@ -21,4 +21,14 @@ class TenantDetails extends Model
     {
         return $this->belongsTo(Unit::class);
     }
+
+    public function issues()
+    {
+        return $this->hasMany(Issue::class, 'tenant_id', 'user_id');
+    }
+
+    public function rating()
+    {
+        return $this->hasMany(Rating::class, 'tenant_id');
+    }
 }
