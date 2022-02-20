@@ -17,8 +17,8 @@ class AdminSeeder extends Seeder
             'last_name' => 'supervisor',
             'email' => 'supervisor@supervisor.com',
             'password' => bcrypt('12345678'),
-            'phone' => Faker::numerify('##########'),
-            'national_id' => Faker::numerify('##########'),
+            'phone' => '463454343',
+            'national_id' => '47545445',
             'role_id' => 3,
             'remember_token' => str_random(10),
         ]);
@@ -28,8 +28,8 @@ class AdminSeeder extends Seeder
             'last_name' => 'admin',
             'email' => 'admin@admin.com',
             'password' => bcrypt('12345678'),
-            'phone' => Faker::numerify('##########'),
-            'national_id' => Faker::numerify('##########'),
+            'phone' => '55765644',
+            'national_id' => '5476547647',
             'role_id' => 3,
             'remember_token' => str_random(10),
         ]);
