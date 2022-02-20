@@ -18,6 +18,7 @@ import store from "../store";
 import AdminHome from "../components/manager/AdminHome";
 import ViewProfile from "../components/ViewProfile.vue";
 import EditProfile from "../components/EditProfile.vue";
+import AddManager from "../components/supervisor/AddManager";
 
 const routes = [
     {
@@ -92,6 +93,8 @@ const routes = [
             },
         ]
     },
+
+
     {
         path: '/management',
         component: LayoutComponent,
@@ -126,7 +129,15 @@ const routes = [
                     },
                 ]
             },
-
+            {
+                path: '/add-manager',
+                component: AddManager,
+                name: 'add_manager',
+                beforeEnter: (to, from, next) => {
+                    if ( store.getters.userDetails.role_id < 3 ) next( false )
+                    else next()
+                },
+            },
             {
                 path: '/add-tenant',
                 component: AddTenant,

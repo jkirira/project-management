@@ -99,3 +99,6 @@ $factory->define(App\Roles::class, function (Faker $faker) {
 //for ($x = 0; $x <= 20; $x++) { factory('App\TenantDetails')->create(['unit_id' => rand(1, 100), 'user_id'=> $x]);}
 // factory('App\Roles')->create(['id'=> 1, 'name' => 'Tenant']);
 // factory('App\Roles')->create(['id' => 2, 'name' => 'Manager']);
+// factory('App\Roles')->create(['id' => 3, 'name' => 'Supervisor']);
+
+//php artisan seed

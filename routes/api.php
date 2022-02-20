@@ -24,6 +24,10 @@ Route::post('login', [PassportAuthController::class, 'login']);
 
 
 Route::middleware('auth:api')->group(function () {
+
+    Route::get('/users', 'UsersController@index');
+    Route::get('/users/{user}', 'UsersController@show');
+
     Route::get('/issues', 'IssuesController@index');
     Route::get('/issues/{id}', 'IssuesController@show');
     Route::get('/issues/by/{user}', 'IssuesController@index');
@@ -34,9 +38,13 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/issues/{issue}/replies', 'RepliesController@store');
     Route::post('/issues/{issue}/rate', 'RatingsController@store');
 
+    Route::get('/issues/manager/{id}', 'IssuesController@showManaged');
+
     Route::get('/projects', 'ProjectsController@index');
     Route::get('/projects/{project}', 'ProjectsController@show');
     Route::get('/projects/{project}/units', 'UnitsController@index');
+    Route::post('/projects/{project}/manager', 'ManagerDetailsController@store');
+    Route::delete('/projects/{project}/manager', 'ManagerDetailsController@destroy');
 
     Route::get('/units', 'UnitsController@index');
     Route::post('/units', 'UnitsController@index');

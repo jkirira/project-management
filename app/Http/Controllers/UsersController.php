@@ -27,11 +27,6 @@ class UsersController extends Controller
      */
     public function index()
     {
-//        $users = User::latest()->filter($filters);
-//
-//        $users = $users->get();
-
-//        $users = User::latest()->get();
 
         $users = $this->userRepo->getAllUsers();
         return response()->json($users, 200);
@@ -75,13 +70,12 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
 //    public function show(User $user)
-    public function show($id)
+    public function show(User $user)
     {
 //        $user = User::with('replies')->find($id);
 
-        $this->authorize('view');
+//        $this->authorize('view');
 
-        $user = $this->userRepo->getUserById($id);
         return response()->json($user, 200);
     }
 

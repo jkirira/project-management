@@ -14,6 +14,8 @@ interface IssueInterface
 
     public function getIssuesByUser($user);
 
+    public function getIssuesByManager($user);
+
     public function getResolvedIssuesByUser($user);
 
     public function getUnresolvedIssuesByUser($user);

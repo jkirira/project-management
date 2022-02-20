@@ -1,7 +1,7 @@
 <template>
 
     <div class="flex flex-grow p-6 mt-8 overflow-auto">
-        <div class="w-2/3">
+        <div class="w-full">
             <section class="text-gray-600 body-font overflow-hidden">
                 <div class="container px-5 py-24 mx-auto">
                     <div class="mb-5">
@@ -33,70 +33,20 @@
             </section>
         </div>
 
-        <div class="flex-grow p-6 mt-8 overflow-auto w-1/3">
-            <div class="flex flex-col flex-wrap -mb-10 lg:text-left text-center">
-                <div class="flex flex-col mb-10 lg:items-start items-center">
-                    <div class="mb-5">
-                        <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">Unresolved Issues</h1>
-                        <span class="text-gray-600 ml-3">34 Issues</span>
-                    </div>
-                    <div class="flex-grow">
-                        <a class="mt-3 text-indigo-500 inline-flex items-center">
-                            <p class="leading-relaxed text-base">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine.</p>
-                        </a>
-                        <a class="mt-3 text-indigo-500 inline-flex items-center">
-                            <p class="leading-relaxed text-base">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine.</p>
-                        </a>
-                        <a class="mt-3 text-indigo-500 inline-flex items-center">
-                            <p class="leading-relaxed text-base">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine.</p>
-                        </a>
-                        <a class="mt-3 text-indigo-500 inline-flex items-center">
-                            <p class="leading-relaxed text-base">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine.</p>
-                        </a>
-                        <a class="mt-3 text-indigo-500 inline-flex items-center">
-                            <p class="leading-relaxed text-base">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine.</p>
-                        </a>
-                    </div>
-                </div>
-                <div class="flex flex-col mb-10 lg:items-start items-center">
-                    <div class="mb-5">
-                        <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">Resolved Issues</h1>
-                        <span class="text-gray-600 ml-3">34 Issues</span>
-                    </div>
-                    <div class="flex-grow">
-                        <a class="mt-3 text-indigo-500 inline-flex items-center">
-                            <p class="leading-relaxed text-base">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine.</p>
-                        </a>
-                        <a class="mt-3 text-indigo-500 inline-flex items-center">
-                            <p class="leading-relaxed text-base">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine.</p>
-                        </a>
-                        <a class="mt-3 text-indigo-500 inline-flex items-center">
-                            <p class="leading-relaxed text-base">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine.</p>
-                        </a>
-                        <a class="mt-3 text-indigo-500 inline-flex items-center">
-                            <p class="leading-relaxed text-base">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine.</p>
-                        </a>
-                        <a class="mt-3 text-indigo-500 inline-flex items-center">
-                            <p class="leading-relaxed text-base">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine.</p>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
     </div>
-
 
 </template>
 
 <script>
 import {mapGetters} from "vuex";
+import base_url from "../../baseUrl.js";
 
 export default{
     name: 'HomeComponent',
     data(){
-        return {}
+        return {
+            issues: ''
+        }
     },
     computed:{
         ...mapGetters([
@@ -105,8 +55,8 @@ export default{
     },
     mounted() {
         axios({
-            method: 'get', //you can set what request you want to be
-            url: 'http://project-management.appp/api/issues/by/'+this.userDetails.id,
+            method: 'get',
+            url: base_url + '/api/issues/manager/' + this.userDetails.id,
             headers: {
                 Authorization: 'Bearer ' + window.localStorage.getItem('token')
             }

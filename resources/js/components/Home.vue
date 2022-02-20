@@ -1,7 +1,7 @@
 <template>
 
     <div class="flex flex-grow p-6 mt-8">
-        <div class="w-2/3">
+        <div class="w-full">
             <section class="text-gray-600 body-font overflow-hidden">
                 <div class="container px-5 py-24 mx-auto">
                     <div class="mb-5 border-b-2 border-grey-200">
@@ -30,8 +30,8 @@
                         </template>
 
                         <template v-else>
-                            <div class="py-8 flex flex-wrap md:flex-nowrap border-b-2 border-grey-200">
-                                <h1 class="text-xl title-font font-medium mt-3 mb-1">You have not created any Issues.</h1>
+                            <div class="py-8 flex flex-wrap md:flex-nowrap">
+                                <h1 class="text-xl title-font font-medium mt-3 mb-1">You have not raised any Issues.</h1>
                             </div>
                         </template>
 

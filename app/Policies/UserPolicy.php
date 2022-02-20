@@ -28,9 +28,9 @@ class UserPolicy
      * @param  \App\User  $model
      * @return mixed
      */
-    public function view(User $user, User $model)
+    public function view(User $user, $id)
     {
-        return auth()->check() && ( auth()->user()->role_id == Roles::IS_MANAGER || auth()->user()->role_id == Roles::IS_SUPERVISOR );
+        return auth()->check() && ( auth()->user()->id == $id || auth()->user()->role_id == Roles::IS_MANAGER || auth()->user()->role_id == Roles::IS_SUPERVISOR );
     }
 
     /**

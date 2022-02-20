@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="h-full">
         <div class="flex flex-col lg:flex-row w-screen h-full text-gray-700 relative">
 
             <!-- Component Start -->
@@ -47,27 +47,23 @@ export default {
         sidebarRoutes(){
             if ( this.userDetails.role_id == 1 ) {
                 return [
-                    {'name':'My Profile', 'to' : 'view_profile'},
+                    {'name':'My Profile', 'to' : 'view_profile', 'params': {'id': this.userDetails.id }},
                     {'name':'My Issues', 'to' : 'home'},
                     {'name':'Add Issues', 'to' : 'add_issue'},
                 ]
             } else if ( this.userDetails.role_id == 2 ){
                 return [
-                    {'name':'My Profile', 'to' : 'view_profile'},
                     {'name':'My Issues', 'to' : 'admin_home'},
-                    {'name':'Active Issues', 'to' : ''},
-                    {'name':'Resolved Issues', 'to' : ''},
                     {'name':'View Project', 'to' : 'units'},
                     {'name':'New Tenant', 'to' : 'add_tenant'},
+                    {'name':'My Profile', 'to' : 'view_profile', 'params': {'id': this.userDetails.id }},
                 ]
             } else if ( this.userDetails.role_id == 3 ){
                 return [
-                    {'name':'My Profile', 'to' : 'view_profile'},
                     {'name':'My Issues', 'to' : 'admin_home'},
-                    {'name':'Active Issues', 'to' : ''},
-                    {'name':'Resolved Issues', 'to' : ''},
-                    {'name':'View Projects', 'to' : 'units'},
+                    {'name':'View Projects', 'to' : 'projects'},
                     {'name':'Add Manager', 'to' : 'add_manager'},
+                    {'name':'My Profile', 'to' : 'view_profile', 'params': {'id': this.userDetails.id }},
                 ]
             }
         }

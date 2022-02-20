@@ -5,9 +5,11 @@
         </div>
         <div class="flex flex-col flex-grow p-4 overflow-auto">
 
-            <span v-for="(route, index) in sidebar_routes" class="flex items-center flex-shrink-0 h-10 px-2 text-sm font-medium rounded hover:bg-gray-300" >
-                <router-link :to="{ name: route.to }"><span class="leading-none">{{ route.name }}</span></router-link>
-            </span>
+            <router-link v-for="(route, index) in sidebar_routes" :key="index" :to="{ name: route.to }">
+                <span class="flex items-center flex-shrink-0 h-10 px-2 text-sm font-medium rounded hover:bg-gray-300" >
+                    <span class="leading-none">{{ route.name }}</span>
+                </span>
+            </router-link>
 
         </div>
 

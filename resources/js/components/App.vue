@@ -33,7 +33,7 @@
             </div>
         </nav>
 
-        <div class="h-auto max-h-screen">
+        <div class="h-full">
             <router-view></router-view>
         </div>
 

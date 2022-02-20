@@ -24,6 +24,9 @@
                                 </div>
                                 <div class="flex-grow">
                                     <h2 class="text-gray-900 text-lg title-font font-medium">{{ project.name }}</h2>
+                                    <h2 class="text-gray-600 text-md title-font font-medium">
+                                        Manager: {{ (project.manager) ? project.manager.first_name + ' ' + project.manager.last_name : 'none' }}
+                                    </h2>
                                 </div>
                             </div>
                         </router-link>

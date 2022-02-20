@@ -46,7 +46,6 @@
 </template>
 
 <script>
-import MovieCard from '../MovieCard.vue'
 export default {
     data(){
         return{}

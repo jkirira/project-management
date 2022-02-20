@@ -77,7 +77,12 @@ class IssuesController extends Controller
      * @param  \App\Issue  $issue
      * @return \Illuminate\Http\Response
      */
-//    public function show(Issue $issue)
+    public function showManaged($id)
+    {
+        $issues = $this->issueRepo->getIssuesByManager($id);
+        return response()->json($issues, 200);
+    }
+
     public function show($id)
     {
 

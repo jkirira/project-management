@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Http\Requests\FinancialHistoryRequest;
 use Illuminate\Database\Eloquent\Model;
 
 class TenantDetails extends Model
@@ -30,5 +31,10 @@ class TenantDetails extends Model
     public function rating()
     {
         return $this->hasMany(Rating::class, 'tenant_id');
+    }
+
+    public function financialHistory()
+    {
+        return $this->hasMany(FinancialHistory::class);
     }
 }

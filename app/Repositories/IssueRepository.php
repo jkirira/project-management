@@ -24,6 +24,11 @@ class IssueRepository implements IssueInterface
         return $user->issues;
     }
 
+    public function getIssuesByManager($id)
+    {
+        return Issue::where('manager_id', $id)->get();
+    }
+
     public function getResolvedIssuesByUser($user){
         return $user->issues->where('status', 'resolved');
     }

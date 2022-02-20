@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class ManagerRequest extends FormRequest
+class FinancialHistoryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,12 +25,12 @@ class ManagerRequest extends FormRequest
     public function rules()
     {
         return [
-            'first_name' => 'required|alpha',
-            'last_name' => 'required|alpha',
-            'number' => 'nullable|numeric',
-            'national_id' => 'required|numeric',
-            'email' => 'required|unique:users,email,{$this->user->id}',
-            'project_id' => 'exists:projects,id',
+            'invoice_number' => 'required|numeric',
+            'payment_method' => 'required',
+            'tenant_id' => 'required|exists,tenant_details,id',
+            'target_month' => 'required|numeric|max:12|min:1',
+            'payment_amount' => 'required',
+            'next_payment_due_date' => 'required',
         ];
     }
 }

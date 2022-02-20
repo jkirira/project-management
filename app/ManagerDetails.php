@@ -17,7 +17,7 @@ class ManagerDetails extends Model
 
     public function project()
     {
-        $this->belongsTo(Project::class);
+        $this->belongsTo(Project::class, 'project_id');
     }
 
     public function supervisor()

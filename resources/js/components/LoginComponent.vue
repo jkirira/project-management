@@ -92,7 +92,8 @@ export default{
                     window.location = '/'
                     return
                 }) .catch((err) => {
-                    this.error = err.response.data['message']
+                    console.log(err.response.data['message']);
+                    this.error = "Password and email do not match our records";
                     window.location = '#top';
                     return
                 })
