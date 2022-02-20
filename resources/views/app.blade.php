@@ -21,8 +21,6 @@
 </head>
 <body>
 
-    @include('layouts.nav')
-
     <div id="app"></div>
 
 </body>

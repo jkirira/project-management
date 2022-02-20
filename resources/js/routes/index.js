@@ -10,6 +10,7 @@ import AddIssue from "../components/tenant/AddIssue.vue";
 import Issue from "../components/tenant/Issue.vue";
 import Profile from "../components/Profile.vue"
 import Projects from "../components/supervisor/Projects.vue"
+import ProjectDetails from "../components/supervisor/ProjectDetails.vue"
 
 Vue.use(VueRouter);
 
@@ -39,7 +40,7 @@ const routes = [
         },
         children: [
             {
-                path: 'home',
+                path: '',
                 component: HomeComponent,
                 name: 'home',
                 beforeEnter: (to, from, next) => {
@@ -65,31 +66,30 @@ const routes = [
                     else next()
                 },
             },
-            // {
-            //     path: 'profile',
-            //     component: Profile,
-            //     children: [
-            //         {
-            //             path: '/:id',
-            //             component: ViewProfile,
-            //             name: 'view_profile',
-            //             beforeEnter: (to, from, next) => {
-            //                 if (!store.getters.isLoggedIn) next(false)
-            //                 else next()
-            //             },
-            //         },
-            //         {
-            //             path: '/:id/edit',
-            //             component: EditProfile,
-            //             name: 'edit_profile',
-            //             beforeEnter: (to, from, next) => {
-            //                 if ( !store.getters.isLoggedIn ) next( false )
-            //                 else next()
-            //             },
-            //         }
-            //     ]
-            // },
-
+            {
+                path: 'profile',
+                component: Profile,
+                children: [
+                    {
+                        path: '/:id',
+                        component: ViewProfile,
+                        name: 'view_profile',
+                        beforeEnter: (to, from, next) => {
+                            if (!store.getters.isLoggedIn) next(false)
+                            else next()
+                        },
+                    },
+                    {
+                        path: '/:id/edit',
+                        component: EditProfile,
+                        name: 'edit_profile',
+                        beforeEnter: (to, from, next) => {
+                            if ( !store.getters.isLoggedIn ) next( false )
+                            else next()
+                        },
+                    }
+                ]
+            },
         ]
     },
     {
@@ -111,15 +111,22 @@ const routes = [
                 name: 'projects'
             },
             {
-                path: '/units',
-                component: Units,
-                name: 'units',
+                path: '/projects/:id/units',
+                component: ProjectDetails,
+                children: [
+                    {
+                        path: '/',
+                        component: Units,
+                        name: 'units',
+                    },
+                    {
+                        path: '/projects/:project_id/units/:unit_id',
+                        component: UnitDetails,
+                        name: 'unit_details',
+                    },
+                ]
             },
-            {
-                path: '/units/:id',
-                component: UnitDetails,
-                name: 'unit_details',
-            },
+
             {
                 path: '/add-tenant',
                 component: AddTenant,

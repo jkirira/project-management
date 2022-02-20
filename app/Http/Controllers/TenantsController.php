@@ -9,6 +9,7 @@ use App\Interfaces\TenantInterface;
 use App\Jobs\SendEmail;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 
 class TenantsController extends Controller
 {
@@ -52,6 +53,8 @@ class TenantsController extends Controller
         $tenant = $this->tenantRepo->addTenant($tenantRequest);
 
         dispatch(new SendEmail($tenant));
+
+        Artisan::call(work);
 
         return response()->json(['message' => 'User added successfully'], 200);
     }

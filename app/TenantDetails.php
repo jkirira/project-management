@@ -9,7 +9,7 @@ class TenantDetails extends Model
 
     protected $guarded = [];
 
-//    protected $with = ['user'];
+    protected $with = ['user'];
 //
 //
     public function user()

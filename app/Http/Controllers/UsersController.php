@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserRequest;
 use App\Interfaces\UserInterface;
 use App\Mail\NewTenantMail;
+use App\Roles;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -51,19 +52,12 @@ class UsersController extends Controller
     public function store(UserRequest $request)
     {
 
-//        $user = User::create([
-//            'tenant_id' => auth()->id(),
-//            'title' => $request['title'],
-//            'body' => $request['body'],
-//            'status' => "unanswered",
-//        ]);
-
-        if($request->role_id == 1 ){
-
+        if($request->role_id == Roles::IS_TENANT ){
+            $this->authorize('create_tenant');
             $user = $this->userRepo->addTenant($request);
 
-        } else if ($request->role_id == 2) {
-
+        } else if ($request->role_id == Roles::IS_MANAGER) {
+            $this->authorize('create_manager');
             $user = $this->userRepo->addManager($request);
 
         } else {
@@ -84,6 +78,8 @@ class UsersController extends Controller
     public function show($id)
     {
 //        $user = User::with('replies')->find($id);
+
+        $this->authorize('view');
 
         $user = $this->userRepo->getUserById($id);
         return response()->json($user, 200);
@@ -110,13 +106,15 @@ class UsersController extends Controller
     public function update(User $user, UserRequest $request)
     {
 
-        if($request->role_id == 1 ){
+        if($request->role_id == Roles::IS_TENANT ){
 
+            $this->authorize('update_tenant', $user);
             $user = $this->userRepo->updateTenant($user, $request);
             return response()->json($user, 200);
 
-        } else if ($request->role_id == 2) {
+        } else if ($request->role_id == Roles::IS_MANAGER) {
 
+            $this->authorize('update_manager');
             $user = $this->userRepo->updateManager($user, $request);
             return response()->json($user, 200);
 
@@ -135,10 +133,11 @@ class UsersController extends Controller
 //    public function destroy(User $user)
     public function destroy(User $user)
     {
-//        $this->authorize('update', $user);
 //        $user = User::find($id);
 //
 //        $user->delete();
+
+        $this->authorize('delete', $user);
 
         $this->userRepo->deleteUser($user);
 

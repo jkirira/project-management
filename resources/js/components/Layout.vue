@@ -47,20 +47,28 @@ export default {
         sidebarRoutes(){
             if ( this.userDetails.role_id == 1 ) {
                 return [
+                    {'name':'My Profile', 'to' : 'view_profile'},
                     {'name':'My Issues', 'to' : 'home'},
                     {'name':'Add Issues', 'to' : 'add_issue'},
-                    {'name':'My Issues', 'to' : ''},
                 ]
-            } else if ( this.userDetails.role_id > 1 ){
+            } else if ( this.userDetails.role_id == 2 ){
                 return [
+                    {'name':'My Profile', 'to' : 'view_profile'},
+                    {'name':'My Issues', 'to' : 'admin_home'},
+                    {'name':'Active Issues', 'to' : ''},
+                    {'name':'Resolved Issues', 'to' : ''},
+                    {'name':'View Project', 'to' : 'units'},
+                    {'name':'New Tenant', 'to' : 'add_tenant'},
+                ]
+            } else if ( this.userDetails.role_id == 3 ){
+                return [
+                    {'name':'My Profile', 'to' : 'view_profile'},
                     {'name':'My Issues', 'to' : 'admin_home'},
                     {'name':'Active Issues', 'to' : ''},
                     {'name':'Resolved Issues', 'to' : ''},
                     {'name':'View Projects', 'to' : 'units'},
-                    {'name':'Add Tenant', 'to' : 'add_tenant'},
+                    {'name':'Add Manager', 'to' : 'add_manager'},
                 ]
-            } else {
-               return []
             }
         }
     },

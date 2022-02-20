@@ -5,6 +5,12 @@ import 'sweetalert2/dist/sweetalert2.min.css';
 
 import App from './components/App.vue';
 
+import { library } from '@fortawesome/fontawesome-svg-core'
+
+import { faHatWizard } from '@fortawesome/free-solid-svg-icons'
+
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
 import store from './store'
 import router from './routes';
 

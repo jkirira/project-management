@@ -12,6 +12,7 @@
             </div>
             <!--/Card-->
 
+
             <!--divider-->
             <hr class="bg-gray-300 my-12">
         </div>

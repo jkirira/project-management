@@ -6,8 +6,11 @@ use App\Filters\IssuesFilters;
 use App\Http\Requests\IssueRequest;
 use App\Interfaces\IssueInterface;
 use App\Issue;
+use App\Jobs\NewIssueMailJob;
+use App\Jobs\SendEmail;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 
 class IssuesController extends Controller
 {
@@ -26,11 +29,6 @@ class IssuesController extends Controller
      */
     public function index(User $user=null)
     {
-//        $issues = Issue::latest()->filter($filters);
-//
-//        $issues = $issues->get();
-
-//        $issues = Issue::latest()->get();
 
         if($user)
         {
@@ -62,14 +60,14 @@ class IssuesController extends Controller
     public function store(IssueRequest $request)
     {
 
-//        $issue = Issue::create([
-//            'tenant_id' => auth()->id(),
-//            'title' => $request['title'],
-//            'body' => $request['body'],
-//            'status' => "unanswered",
-//        ]);
+        $this->authorize('create');
 
         $issue = $this->issueRepo->addIssue($request);
+        dispatch(new NewIssueMailJob($issue));
+
+        Artisan::call('queue:work');
+        //php artisAN QUEUE:WORK
+
         return response()->json(['message' => 'Issue Successfully created!'], 200);
     }
 
@@ -82,9 +80,11 @@ class IssuesController extends Controller
 //    public function show(Issue $issue)
     public function show($id)
     {
-//        $issue = Issue::with('replies')->find($id);
 
         $issue = $this->issueRepo->getIssueById($id);
+
+        $this->authorize('view', $issue);
+
         return response()->json($issue, 200);
     }
 
@@ -96,6 +96,8 @@ class IssuesController extends Controller
      */
     public function edit(Issue $issue, Request $request)
     {
+        $this->authorize('update', $issue);
+
         if($request->resolve){
             $issue->resolve();
             return response(['message' => 'Issue Resolved'], 200);
@@ -114,6 +116,8 @@ class IssuesController extends Controller
      */
     public function update(Issue $issue, IssueRequest $request)
     {
+        $this->authorize('update', $issue);
+
         $issue = $this->issueRepo->updateIssue($issue, $request);
         return response()->json($issue, 200);
     }
@@ -127,10 +131,8 @@ class IssuesController extends Controller
 //    public function destroy(Issue $issue)
     public function destroy($issue)
     {
-//        $this->authorize('update', $issue);
-//        $issue = Issue::find($id);
-//
-//        $issue->delete();
+
+        $this->authorize('delete', $issue);
 
         $this->issueRepo->deleteIssue($issue);
 

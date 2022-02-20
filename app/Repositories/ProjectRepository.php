@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Interfaces\ProjectInterface;
 
+use App\Project;
 use App\User;
 use Illuminate\Support\Facades\Hash;
 
@@ -17,7 +18,7 @@ class ProjectRepository implements ProjectInterface
 
     public function getProjectById($id)
     {
-        return Project::find($id);
+        return Project::with('units')->find($id);
     }
 
 

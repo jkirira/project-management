@@ -34,9 +34,9 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/issues/{issue}/replies', 'RepliesController@store');
     Route::post('/issues/{issue}/rate', 'RatingsController@store');
 
-    Route::get('/Projects', 'ProjectsController@index');
-    Route::get('/Projects/{Project}', 'ProjectsController@show');
-    Route::get('/Projects/{Project}/units', 'UnitsController@index');
+    Route::get('/projects', 'ProjectsController@index');
+    Route::get('/projects/{project}', 'ProjectsController@show');
+    Route::get('/projects/{project}/units', 'UnitsController@index');
 
     Route::get('/units', 'UnitsController@index');
     Route::post('/units', 'UnitsController@index');

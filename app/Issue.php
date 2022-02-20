@@ -9,7 +9,7 @@ class Issue extends Model
 
     protected $guarded = [];
 
-//    protected $with = ['creator'];
+    protected $with = ['rating'];
 
     protected static function boot()
     {
@@ -66,13 +66,18 @@ class Issue extends Model
         $this->update(['status' => 'unresolved']);
     }
 
+    public function unanswered()
+    {
+        $this->update(['status' => 'unanswered']);
+    }
+
     public function addReply($reply)
     {
-        if($this->replies()->count() < 1){
-            if(auth()->user()->role_id > 1){
-                $this->unresolve();
-            }
+        if(auth()->user()->role_id > Roles::IS_TENANT){
+            $this->unanswered();
         }
+
+        $this->unresolve();
 
         $new_reply = $this->replies()->create($reply);
         return $new_reply;

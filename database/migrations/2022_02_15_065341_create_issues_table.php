@@ -21,6 +21,7 @@ class CreateIssuesTable extends Migration
             $table->longText('body');
             $table->string('status')->default('unanswered');
             $table->unsignedTinyInteger('rating_id')->nullable()->default(null);
+            $table->boolean('is_escalated')->default(false);
             $table->timestamps();
         });
     }

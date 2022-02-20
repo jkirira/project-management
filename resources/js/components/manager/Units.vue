@@ -1,123 +1,107 @@
 <template>
 
-
-
-    <section class="text-gray-600 body-font">
-        <div class="container px-5 py-24 mx-auto">
-            <div class="flex flex-col text-center w-full mb-20">
-                <h2 class="text-xs text-indigo-500 tracking-widest font-medium title-font mb-1">Units</h2>
-                <h1 class="sm:text-3xl text-2xl font-medium title-font text-gray-900">Master Cleanse Reliac Heirloom</h1>
-            </div>
-            <div class="flex flex-wrap -m-4">
-
-
-
-                <div class="xl:w-1/4 md:w-1/2 p-4">
-                    <div class="bg-gray-100 p-6 rounded-lg">
-                        <img class="h-40 rounded w-full object-cover object-center mb-6" src="https://dummyimage.com/720x400" alt="content">
-                        <h3 class="tracking-widest text-indigo-500 text-xs font-medium title-font">SUBTITLE</h3>
-                        <h2 class="text-lg text-gray-900 font-medium title-font mb-4">Chichen Itza</h2>
-                        <p class="leading-relaxed text-base">Fingerstache flexitarian street art 8-bit waistcoat. Distillery hexagon disrupt edison bulbche.</p>
-                    </div>
-                </div>
-
-
-
-
-                <div class="p-4 md:w-1/3">
-                    <div class="flex rounded-lg h-full bg-gray-100 p-8 flex-col">
-                        <div class="flex items-center mb-3">
-                            <div class="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-indigo-500 text-white flex-shrink-0">
-                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
-                                    <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
-                                </svg>
+    <div class="my-24">
+        <div class="flex flex-wrap -m-4">
+            <template v-if="unitData.data">
+                <div v-for="(unit, index) in unitData.data" :key=index class="p-4 md:w-1/3">
+                    <router-link :to="{name: 'unit_details', params: {project_id: $route.params.id , unit_id: unit.id} }">
+                        <div class="flex rounded-lg h-full bg-gray-100 p-8 flex-col">
+                            <div class="flex items-center mb-3">
+                                <div class="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-green-500 text-white flex-shrink-0">
+                                    <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                                        <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                                    </svg>
+                                </div>
+                                <h2 class="text-gray-900 text-lg title-font font-medium">{{ unit.name }}</h2>
                             </div>
-                            <h2 class="text-gray-900 text-lg title-font font-medium">Shooting Stars</h2>
                         </div>
-                        <div class="flex-grow">
-                            <p class="leading-relaxed text-base">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine.</p>
-                            <a class="mt-3 text-indigo-500 inline-flex items-center">Learn More
-                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
-                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
+                    </router-link>
                 </div>
-                <div class="p-4 md:w-1/3">
-                    <div class="flex rounded-lg h-full bg-gray-100 p-8 flex-col">
-                        <div class="flex items-center mb-3">
-                            <div class="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-indigo-500 text-white flex-shrink-0">
-                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
-                                    <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
-                                    <circle cx="12" cy="7" r="4"></circle>
-                                </svg>
-                            </div>
-                            <h2 class="text-gray-900 text-lg title-font font-medium">The Catalyzer</h2>
-                        </div>
-                        <div class="flex-grow">
-                            <p class="leading-relaxed text-base">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine.</p>
-                            <a class="mt-3 text-indigo-500 inline-flex items-center">Learn More
-                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
-                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="p-4 md:w-1/3">
-                    <div class="flex rounded-lg h-full bg-gray-100 p-8 flex-col">
-                        <div class="flex items-center mb-3">
-                            <div class="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-indigo-500 text-white flex-shrink-0">
-                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
-                                    <circle cx="6" cy="6" r="3"></circle>
-                                    <circle cx="6" cy="18" r="3"></circle>
-                                    <path d="M20 4L8.12 15.88M14.47 14.48L20 20M8.12 8.12L12 12"></path>
-                                </svg>
-                            </div>
-                            <h2 class="text-gray-900 text-lg title-font font-medium">Neptune</h2>
-                        </div>
-                        <div class="flex-grow">
-                            <p class="leading-relaxed text-base">Blue bottle crucifix vinyl post-ironic four dollar toast vegan taxidermy. Gastropub indxgo juice poutine.</p>
-                            <a class="mt-3 text-indigo-500 inline-flex items-center">Learn More
-                                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 ml-2" viewBox="0 0 24 24">
-                                    <path d="M5 12h14M12 5l7 7-7 7"></path>
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </template>
         </div>
-    </section>
+
+        <template v-if="unitData.data">
+            <div class="pagination-wrapper">
+                <Pagination :data="unitData" class="pagination" :align="'center'"  @pagination-change-page="getResults">
+                    <span slot="prev-nav">&lt; Previous</span>
+                    <span slot="next-nav">Next &gt;</span>
+                </Pagination>
+            </div>
+        </template>
+
+        <template v-else>
+            <div class="p-4 md:w-1/3">
+                This project has no units
+            </div>
+        </template>
+    </div>
 
 </template>
 
 <script>
 import base_url from "../../baseUrl";
+import LaravelVuePagination from 'laravel-vue-pagination';
 
 export default{
     name: "Units",
     data(){
         return {
-
+            unitData: {}
         }
     },
+    components: {
+        'Pagination': LaravelVuePagination
+    },
     mounted(){
-        axios({
-            method: 'get',
-            url: base_url + '/managers/' + window.localStorage.getItem('user') + '/project',
-            headers: {
-                Authorization: 'Bearer ' + window.localStorage.getItem('token')
-            }
-        }).then((response) =>{
-            console.log(response.data)
-            this.user_issues = response.data
-        }) .catch((err) => {
-            console.log(err)
-        })
+        this.getResults();
+    },
+    methods:{
+        getResults(page = 1) {
+            axios({
+                method: 'get',
+                url: base_url + '/api/projects/' + this.$route.params.id + '/units?page=' + page,
+                headers: {
+                    Authorization: 'Bearer ' + window.localStorage.getItem('token')
+                }
+            }).then((response) =>{
+                console.log(response.data)
+                this.unitData = response.data
+            }) .catch((err) => {
+                console.log(err)
+            })
+        }
     }
 }
+
 </script>
 
-<style></style>
+<style>
+.pagination-wrapper {
+    text-align: center;
+}
+
+.pagination {
+    display: inline-block;
+    margin: 30px 0;
+}
+
+.pagination li {
+    color: black;
+    float: left;
+    text-decoration: none;
+    box-sizing: border-box;
+    margin: 0 5px;
+}
+
+.pagination li > a {
+    padding: 8px 16px;
+    display: inline-block;
+}
+
+.pagination li.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.pagination li:hover:not(.active) {background-color: #ddd;}
+</style>

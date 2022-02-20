@@ -37,6 +37,9 @@ class RepliesController extends Controller
      */
     public function store(Request $request, Issue $issue)
     {
+
+        $this->authorize('create', $issue);
+
         $this->validate(request(), [
             'body' => 'required'
         ]);
@@ -91,6 +94,11 @@ class RepliesController extends Controller
      */
     public function destroy(Reply $reply)
     {
-        //
+        $this->authorize('delete', $reply);
+
+        $reply->delete();
+
+        return response()->json(["success"], 204);
+
     }
 }

@@ -12,7 +12,7 @@ use App\Mail\NewTenantMail;
 
 use Mail;
 
-class SendEmail implements ShouldQueue
+class NewTenantMailJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
