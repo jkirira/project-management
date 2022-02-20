@@ -2,39 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a2194983-0307-4fd3-9bd5-5598b3c34f59" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Http/Requests/FinancialHistoryRequest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Interfaces/FinancialHistoryInterface.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Repositories/FinancialHistoryRepository.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/supervisor/AddManager.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/FinancialRecord.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/IssuesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/IssuesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ManagerDetailsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ManagerDetailsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UsersController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UsersController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/ManagerRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/ManagerRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Interfaces/IssueInterface.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Interfaces/IssueInterface.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/ManagerDetails.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/ManagerDetails.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Policies/UserPolicy.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Policies/UserPolicy.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Project.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Project.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/RepositoryServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/RepositoryServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Repositories/IssueRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/IssueRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Repositories/ManagerRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Repositories/ManagerRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/TenantDetails.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/TenantDetails.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/factories/ModelFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/ModelFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/factories/UserFactory.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/factories/UserFactory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/Home.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Home.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/Layout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Layout.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/LoginComponent.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/LoginComponent.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/Sidebar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Sidebar.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/components/ViewProfile.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/ViewProfile.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/manager/AdminHome.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/manager/AdminHome.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/manager/Layout.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/manager/Layout.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/supervisor/ProjectDetails.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/supervisor/ProjectDetails.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/supervisor/Projects.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/supervisor/Projects.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/routes/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -199,7 +171,7 @@
       <option name="presentableId" value="Default" />
       <updated>1644867195471</updated>
       <workItem from="1644867196956" duration="2216000" />
-      <workItem from="1644905762720" duration="233837000" />
+      <workItem from="1644905762720" duration="235660000" />
     </task>
     <servers />
   </component>

@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import base_url from "../baseUrl";
+import base_url from "../baseUrl.js";
 import {mapGetters} from "vuex";
 
 export default {

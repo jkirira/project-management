@@ -101,4 +101,11 @@ $factory->define(App\Roles::class, function (Faker $faker) {
 // factory('App\Roles')->create(['id' => 2, 'name' => 'Manager']);
 // factory('App\Roles')->create(['id' => 3, 'name' => 'Supervisor']);
 
+//composer dump-autoload
 //php artisan seed
+//php artisan queue:table
+//php artisan migrate
+//php artisan queue:work
+//php artisan queue:work
+
+

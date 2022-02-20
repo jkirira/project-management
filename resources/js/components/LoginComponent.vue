@@ -45,6 +45,7 @@
 <script>
 import {mapGetters, mapActions} from "vuex";
 import store from "../store/index.js";
+import base_url from "../baseUrl.js";
 export default{
     name: "LoginComponent",
     data(){
@@ -80,7 +81,7 @@ export default{
                 return
             }
 
-            axios.post('http://project-management.appp/api/login', this.form )
+            axios.post(base_url + '/api/login', this.form )
                 .then((response) => {
                     this.$swal('Success', 'Login Successful');
                     console.log(response.data)
