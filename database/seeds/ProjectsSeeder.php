@@ -11,7 +11,30 @@ class ProjectsSeeder extends Seeder
      */
     public function run()
     {
-        $projects = factory('App\Project', 5)->create();
-        $projects->each(function($project){ factory('App\Unit', 20)->create(['project_id' => $project->id]); });
+        DB::table('projects')->insert([
+            'name' => 'ProjectOne',
+        ]);
+        DB::table('projects')->insert([
+            'name' => 'ProjectTwo',
+        ]);
+        DB::table('projects')->insert([
+            'name' => 'ProjectThree',
+        ]);
+        DB::table('projects')->insert([
+            'name' => 'ProjectFour',
+        ]);
+        DB::table('projects')->insert([
+            'name' => 'ProjectFive',
+        ]);
+
+        $projects = DB::table('projects')->get();
+        $projects->each(function($project){
+            for($i=0; $i<20; $i++){
+                DB::table('units')->insert([
+                    'name' => 'apartment '.$project.id.'-'.$i,
+                    'project_id' => $project.id,
+                ]);
+            }
+        });
     }
 }

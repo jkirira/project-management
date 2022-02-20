@@ -11,8 +11,14 @@ class RolesSeeder extends Seeder
      */
     public function run()
     {
-         factory('App\Roles')->create(['id'=> 1, 'name' => 'Tenant']);
-         factory('App\Roles')->create(['id' => 2, 'name' => 'Manager']);
-         factory('App\Roles')->create(['id' => 3, 'name' => 'Supervisor']);
+        DB::table('roles')->insert([
+            'name' => 'Tenant',
+        ]);
+        DB::table('roles')->insert([
+            'name' => 'Manager',
+        ]);
+        DB::table('roles')->insert([
+            'name' => 'Supervisor',
+        ]);
     }
 }

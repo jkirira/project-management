@@ -13,7 +13,8 @@ use Faker\Generator as Faker;
 | model instances for testing / seeding your application's database.
 |
 */
-Fac
+$faker = Faker\Factory::create();
+
 $factory->define(App\User::class, function (Faker $faker) {
     return [
         'first_name' => $faker->firstName,
