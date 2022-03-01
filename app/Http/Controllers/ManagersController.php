@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ManagerRequest;
 use App\Interfaces\ManagerInterface;
+use App\Jobs\NewTenantMailJob;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 
 class ManagersController extends Controller
 {
@@ -47,6 +49,10 @@ class ManagersController extends Controller
     public function store(ManagerRequest $managerRequest)
     {
         $manager = $this->managerRepo->addManager($managerRequest);
+
+        dispatch(new NewTenantMailJob($manager));
+
+        Artisan::call('queue:work --once');
 
         return response()->json($manager, 200);
     }

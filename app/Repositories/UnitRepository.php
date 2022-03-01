@@ -35,7 +35,6 @@ class UnitRepository implements UnitInterface
 
     }
 
-
     public function updateUnit(Unit $unit, UnitRequest $request)
     {
         $validated = $request->validated();

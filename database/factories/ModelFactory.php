@@ -13,12 +13,14 @@ use Faker\Generator as Faker;
 | model instances for testing / seeding your application's database.
 |
 */
+$faker = Faker\Factory::create();
 
 $factory->define(App\User::class, function (Faker $faker) {
     return [
         'first_name' => $faker->firstName,
         'last_name' => $faker->lastName,
         'phone' => $faker->numerify('##########'),
+        'national_id' => $faker->numerify('##########'),
         'email' => $faker->unique()->safeEmail,
         'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
         'remember_token' => str_random(10),
@@ -98,3 +100,14 @@ $factory->define(App\Roles::class, function (Faker $faker) {
 //for ($x = 0; $x <= 20; $x++) { factory('App\TenantDetails')->create(['unit_id' => rand(1, 100), 'user_id'=> $x]);}
 // factory('App\Roles')->create(['id'=> 1, 'name' => 'Tenant']);
 // factory('App\Roles')->create(['id' => 2, 'name' => 'Manager']);
+// factory('App\Roles')->create(['id' => 3, 'name' => 'Supervisor']);
+
+//composer dump-autoload
+//php artisan migrate:refresh --seed
+//php artisan passport:install
+//php artisan queue:table
+//php artisan migrate
+//php artisan queue:work
+//php artisan queue:work
+
+

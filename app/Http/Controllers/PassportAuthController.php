@@ -6,7 +6,9 @@ use App\Http\Requests\RegisterRequest;
 use App\User;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Auth;
 use Laravel\Passport\Bridge\RefreshToken;
+use Laravel\Passport\Bridge\RefreshTokenRepository;
 //use Laravel\Passport\RefreshToken;
 use Laravel\Passport\Token;
 
@@ -21,6 +23,7 @@ class PassportAuthController extends Controller
             'first_name' => $validated['first_name'],
             'last_name' => $validated['last_name'],
             'email' => $validated['email'],
+            'national_id' => $validated['national_id'],
             'password' => bcrypt($validated['password'])
         ]);
 
@@ -41,20 +44,26 @@ class PassportAuthController extends Controller
 
         if (auth()->attempt($data)) {
             $token = auth()->user()->createToken('LaravelAuthApp')->accessToken;
-            return response()->json(['token' => $token], 200);
+            return response()->json([
+                'message' => 'Login Successful!',
+                'user' => auth()->user(),
+                'token' => $token
+            ], 200);
         } else {
-            return response()->json(['error' => 'Unauthorised'], 401);
+            return response()->json(['message' => 'Password and Email do not match our records.'], 401);
         }
+
     }
 
     public function logout()
     {
         $user = auth()->user();
-
-        $tokens =  $user->tokens->pluck('id');
-        Token::whereIn('id', $tokens)
-            ->update(['revoked', true]);
-
-        RefreshToken::whereIn('access_token_id', $tokens)->update(['revoked' => true]);
+        $refreshTokenRepository = app(RefreshTokenRepository::class);
+        foreach($user->tokens as $token) {
+            $token->revoke();
+            $refreshTokenRepository->revokeRefreshToken($token->id);
+        }
+        return response()->json(['message' => 'Log out successful'], 200);
     }
+
 }

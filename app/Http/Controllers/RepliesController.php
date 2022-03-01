@@ -9,10 +9,6 @@ use Illuminate\Http\Request;
 class RepliesController extends Controller
 {
 
-    public function __construct(){
-        $this->middleware('auth');
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -41,17 +37,18 @@ class RepliesController extends Controller
      */
     public function store(Request $request, Issue $issue)
     {
+
+//        $this->authorize('create', $issue);
+
         $this->validate(request(), [
             'body' => 'required'
         ]);
 
-        $issue->addReply([
-            'body' => request('body'),
-            'user_id' => auth()->id(),
-        ]);
+        $request['user_id'] = auth()->id();
 
-        return back()
-            ->with('flash', 'Your reply has been left');
+        $new_reply = $issue->addReply($request->all());
+
+        return response()->json(["message" => "Replied", "reply" => $new_reply], 200);
     }
 
     /**
@@ -96,6 +93,11 @@ class RepliesController extends Controller
      */
     public function destroy(Reply $reply)
     {
-        //
+//        $this->authorize('delete', $reply);
+
+        $reply->delete();
+
+        return response()->json(["success"], 204);
+
     }
 }

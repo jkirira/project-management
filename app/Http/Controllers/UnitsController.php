@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UnitRequest;
 use App\Interfaces\UnitInterface;
+use App\Project;
 use App\Unit;
 use Illuminate\Http\Request;
 
@@ -21,8 +22,15 @@ class UnitsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Project $project=null)
     {
+
+        if($project)
+        {
+            $units = $project->units()->paginate(5);
+            return response()->json($units, 200);
+        }
+
         $units = $this->unitRepo->getAllUnits();
 
         return response()->json($units, 200);
@@ -100,7 +108,6 @@ class UnitsController extends Controller
         $this->unitRepo->deleteUnit($unit);
 
         return response()->json(['message' => "success"], 200);
-
 
     }
 }

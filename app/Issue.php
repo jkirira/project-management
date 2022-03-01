@@ -9,7 +9,7 @@ class Issue extends Model
 
     protected $guarded = [];
 
-//    protected $with = ['creator'];
+    protected $with = ['rating'];
 
     protected static function boot()
     {
@@ -29,6 +29,10 @@ class Issue extends Model
 
     }
 
+    public function time_created()
+    {
+        $this->created_at->diffForHumans();
+    }
 
     public function path()
     {
@@ -38,7 +42,7 @@ class Issue extends Model
 
     public function replies()
     {
-        return $this->hasMany(Reply::class);
+        return $this->hasMany(Reply::class)->latest();
     }
 
     public function creator()
@@ -56,14 +60,52 @@ class Issue extends Model
         return $this->hasOne(Rating::class);
     }
 
-    public function addReply($reply)
+    public function resolve()
     {
-        $this->replies()->create($reply);
+        $this->update(['status' => 'resolved']);
+        return $this;
     }
 
-    public function addRating($reply)
+    public function unresolve()
     {
-        $this->rating()->create($reply);
+        $this->update(['status' => 'unresolved']);
+        return $this;
+    }
+
+    public function unanswered()
+    {
+        $this->update(['status' => 'unanswered']);
+        return $this;
+    }
+
+    public function assign_manager($manager_id)
+    {
+        return $this->update(['manager_id' => 'unanswered']);
+    }
+
+    public function addReply($reply)
+    {
+        if(auth()->user()->role_id == Roles::IS_TENANT){
+            $this->unanswered();
+        } else {
+            $this->unresolve();
+        }
+
+        $this->replies()->create($reply);
+
+        $new_reply = $this->replies->first();
+        return $new_reply;
+    }
+
+    public function addRating($rating)
+    {
+        if($this->rating){
+            $this->rating()->delete();
+        }
+
+        $this->rating()->create($rating);
+
+        return $this;
     }
 
     // accepts a set of filters

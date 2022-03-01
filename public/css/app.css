@@ -21646,6 +21646,14 @@ video {
   color: #9dd85c;
 }
 
+html {
+  height: auto;
+}
+
+body {
+  height: 100%;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;

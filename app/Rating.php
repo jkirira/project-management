@@ -10,7 +10,7 @@ class Rating extends Model
 
     public function tenant()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class, 'tenant_id');
     }
 
     public function issue()

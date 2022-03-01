@@ -11,10 +11,10 @@ class IssuesFilters extends Filters {
     //filters we can respond to
     protected $filters = ['by'];
 
-    protected function by($username){
-//        $user = User::where('name', $username)->firstOrFail();
+    protected function by($id){
+//        $issues = Issue::where('id', $username)->firstOrFail();
 
-        return $this->builder->where('user_id', $user->id);
+//        return $this->builder->where('user_id', $user->id);
     }
 
 

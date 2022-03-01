@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Http\Requests\FinancialHistoryRequest;
 use Illuminate\Database\Eloquent\Model;
 
 class TenantDetails extends Model
@@ -9,7 +10,7 @@ class TenantDetails extends Model
 
     protected $guarded = [];
 
-//    protected $with = ['user'];
+    protected $with = ['user'];
 //
 //
     public function user()
@@ -20,5 +21,20 @@ class TenantDetails extends Model
     public function unit()
     {
         return $this->belongsTo(Unit::class);
+    }
+
+    public function issues()
+    {
+        return $this->hasMany(Issue::class, 'tenant_id', 'user_id')->latest();
+    }
+
+    public function rating()
+    {
+        return $this->hasMany(Rating::class, 'tenant_id');
+    }
+
+    public function financialHistory()
+    {
+        return $this->hasMany(FinancialHistory::class);
     }
 }

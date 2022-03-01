@@ -20,19 +20,35 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('register', [PassportAuthController::class, 'register']);
 Route::post('login', [PassportAuthController::class, 'login']);
-Route::get('/issues', 'IssuesController@index');
-Route::get('/issues/{id}', 'IssuesController@show');
+//Route::post('logout/{user}', [PassportAuthController::class, 'logout']);
+
 
 Route::middleware('auth:api')->group(function () {
+
+    Route::get('/users', 'UsersController@index');
+    Route::get('/users/{user}', 'UsersController@show');
+
+    Route::get('/issues', 'IssuesController@index');
+    Route::get('/issues/{id}', 'IssuesController@show');
+    Route::get('/issues/by/{user}', 'IssuesController@index');
     Route::get('/issues/create', 'IssuesController@create');
     Route::post('/issues', 'IssuesController@store');
     Route::delete('/issues/{issue}', 'IssuesController@destroy');
+    Route::post('/issues/{issue}/resolve', 'IssuesController@edit');
     Route::post('/issues/{issue}/replies', 'RepliesController@store');
+    Route::post('/issues/{issue}/rate', 'RatingsController@store');
+
+    Route::get('/issues/manager/{id}', 'IssuesController@showManaged');
+
+    Route::get('/projects', 'ProjectsController@index');
+    Route::get('/projects/{project}', 'ProjectsController@show');
+    Route::get('/projects/{project}/units', 'UnitsController@index');
+    Route::delete('/projects/{project}/manager', 'ManagerDetailsController@destroy');
 
     Route::get('/units', 'UnitsController@index');
     Route::post('/units', 'UnitsController@index');
-    Route::get('/unit/{id}', 'UnitsController@show');
-    Route::delete('/unit/{id}', 'UnitsController@show');
+    Route::get('/units/{unit}', 'UnitsController@show');
+    Route::delete('/units/{unit}', 'UnitsController@show');
 
     Route::get('/tenants', 'TenantsController@index');
     Route::post('/tenants', 'TenantsController@store');
@@ -44,8 +60,11 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/managers', 'ManagersController@store');
     Route::put('/managers/{user}', 'ManagersController@update');
     Route::get('/managers/{user}', 'ManagersController@show');
+    Route::get('/managers/project/{project}', 'ManagerDetailsController@index');
     Route::delete('/managers/{user}', 'ManagersController@destroy');
+    Route::post('/managers/project/{project}', 'ManagerDetailsController@store');
 
+    Route::post('/users/{user}/change-password', 'PasswordController@update');
     Route::post('logout', [PassportAuthController::class, 'logout']);
 
 

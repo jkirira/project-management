@@ -28,11 +28,9 @@ class ManagerRequest extends FormRequest
             'first_name' => 'required|alpha',
             'last_name' => 'required|alpha',
             'number' => 'nullable|numeric',
+            'national_id' => 'required|numeric',
             'email' => 'required|unique:users,email,{$this->user->id}',
-            'password' => 'required|min:8,{$this->user->id}',
-            'role_id' => 'integer|size:2',
-            'project_id' => 'required|exists:projects,id',
-            'supervisor_id' => 'required|exists:users,id',
+            'project_id' => 'exists:projects,id',
         ];
     }
 }

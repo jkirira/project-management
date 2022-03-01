@@ -27,11 +27,11 @@ class TenantRequest extends FormRequest
         return [
             'first_name' => 'required|alpha',
             'last_name' => 'required|alpha',
-            'number' => 'nullable|numeric',
-            'email' => 'required|unique:users,email,{$this->user->id}',
-            'password' => 'required|min:8,{$this->user->id}',
+            'national_id' => 'required|numeric',
+            'phone' => 'nullable|numeric',
+            'email' => 'required|email|unique:users,email',
             'role_id' => 'integer|size:1',
-            'unit_id' => 'required|exists:units,id',
+            'unit_id' => 'required|exists:units,id|unique:tenant_details,unit_id',
             'occupation' => 'nullable|alpha'
         ];
     }

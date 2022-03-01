@@ -16,7 +16,7 @@ class IssueRepository implements IssueInterface
 
     public function getIssueById($id)
     {
-        return Issue::find($id);
+        return Issue::with('replies')->find($id);
     }
 
     public function getIssuesByUser($user)
@@ -24,11 +24,34 @@ class IssueRepository implements IssueInterface
         return $user->issues;
     }
 
+    public function getIssuesByManager($id)
+    {
+        return $issues = Issue::where('manager_id', $id)->get();
+    }
+
+    public function getResolvedIssuesByUser($user){
+        return $user->issues->where('status', 'resolved');
+    }
+
+    public function getUnresolvedIssuesByUser($user){
+        return $user->issues->where('status', 'unresolved');
+    }
+
+    public function getUnansweredIssuesByUser($user){
+        return $user->issues->where('status', 'unanswered');
+    }
+
     public function addIssue(IssueRequest $request)
     {
-        $validated = $request->validated();
+        $tenant = auth()->user();
+        $manager = $tenant->tenantDetails->unit->project->manager;
+        $project = $tenant->tenantDetails->unit->project;
 
-        Issue::create($validated);
+        $request['tenant_id'] = $tenant->id;
+        $request['manager_id'] = $manager ? $manager->id : null;
+        $request['project_id'] = $project ? $project->id : null;
+
+        return Issue::create($request->all());
     }
 
     public function updateIssue(Issue $issue, IssueRequest $request)

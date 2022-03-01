@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Http\Requests\TenantRequest;
 use App\Http\Requests\UpdateTenantRequest;
 use App\Interfaces\TenantInterface;
+use App\Jobs\NewTenantMailJob;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 
 class TenantsController extends Controller
 {
@@ -49,7 +52,11 @@ class TenantsController extends Controller
     {
         $tenant = $this->tenantRepo->addTenant($tenantRequest);
 
-        return response()->json($tenant, 200);
+        dispatch(new NewTenantMailJob($tenant));
+
+        Artisan::call('queue:work --once');
+
+        return response()->json(['message' => 'User added successfully'], 200);
     }
 
     /**
@@ -62,7 +69,7 @@ class TenantsController extends Controller
     {
         $tenant = $this->tenantRepo->getTenantById($id);
 
-        return response()->json($tenant, 200);
+        return response()->json(['tenant' => $tenant], 200);
     }
 
     /**
@@ -103,5 +110,11 @@ class TenantsController extends Controller
         return response()->json(['message' => "success"], 200);
 
 
+    }
+
+    public function sendEmail(User $user)
+    {
+        dispatch(new SendEmail($user));
+        dd('done');
     }
 }

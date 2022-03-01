@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -17,6 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $guarded = [];
+//    protected $with = ['managerDetails', 'tenantDetails'];
 
 
     /**
@@ -50,6 +52,15 @@ class User extends Authenticatable
     public function role()
     {
         return $this->belongsToMany(Roles::class);
+    }
+
+    public function issues()
+    {
+        if ($this->tenantDetails == null) {
+            return new HasMany($this->newQuery(), $this, '', '');
+        }
+
+        return $this->tenantDetails->issues();
     }
 
 }

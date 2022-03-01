@@ -11,8 +11,10 @@ class Reply extends Model
     protected $with = ['owner'];
 
     public function owner(){
+
         return $this->belongsTo(User::class, 'user_id');
     }
+
 
     public function issue()
     {

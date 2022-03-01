@@ -22,26 +22,13 @@ abstract class Filters
         // $builder is the query passed from the 'scopeFilter' method on the thread model in thread.php
         $this->builder = $builder;
 
-        collect($this->getFilters())
-            //get filters on the request object as $filter and $value
-            // filter collection down to only the items where
-            // there is a method on the child filter class of the same name as the filter
-            ->filter(function($value, $filter){
-                return (method_exists($this, $filter));
-            })
-            //for each one found we trigger the function of the same name
-            // and pass the value from the request object to the function
-            ->each(function($value, $filter){
+        foreach ($this->getFilters() as $filter => $value)
+        {
+            if(method_exists($this, $filter))
+            {
                 $this->$filter($value);
-            });
-
-//        foreach ($this->getFilters() as $filter => $value)
-//        {
-//            if(method_exists($this, $filter))
-//            {
-//                $this->$filter($value);
-//            }
-//        }
+            }
+        }
 
         return $this->builder;
     }

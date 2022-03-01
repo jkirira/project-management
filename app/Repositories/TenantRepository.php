@@ -5,7 +5,9 @@ namespace App\Repositories;
 use App\Http\Requests\TenantRequest;
 use App\Http\Requests\UpdateTenantRequest;
 use App\Interfaces\TenantInterface;
+
 use App\User;
+use Illuminate\Support\Facades\Hash;
 
 class TenantRepository implements TenantInterface
 {
@@ -23,6 +25,8 @@ class TenantRepository implements TenantInterface
 
     public function addTenant(TenantRequest $request)
     {
+        $request['password'] = Hash::make($request->national_id);
+
         $user = User::create($request->except(['role_id', 'unit_id', 'occupation']));
         $user->tenantDetails()->create([
             'user_id' => $user->id,
